@@ -1,32 +1,36 @@
-import { ChakraProvider, Box, Text, Link, VStack, Code, Grid, theme } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { ChakraProvider } from '@chakra-ui/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { Home, Trade, NoMatch } from 'pages';
+import { Fonts } from 'components';
+import { constants, theme } from 'utils';
 
-function App() {
+const client = new QueryClient();
+
+const App: React.FC = () => {
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign='center' fontSize='xl'>
-        <Grid minH='100vh' p={3}>
-          <ColorModeSwitcher justifySelf='flex-end' />
-          <VStack spacing={8}>
-            <Logo h='40vmin' pointerEvents='none' />
-            <Text>
-              Edit <Code fontSize='xl'>src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color='teal.500'
-              href='https://chakra-ui.com'
-              fontSize='2xl'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
+      <Fonts />
+      <QueryClientProvider client={client}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <Router>
+          <Switch>
+            <Redirect exact from={constants.Routes.Root} to={constants.Routes.Home} />
+            <Route exact path={constants.Routes.Home}>
+              <Home />
+            </Route>
+            <Route exact path={constants.Routes.Trade}>
+              <Trade />
+            </Route>
+            <Route path={constants.Routes.Others}>
+              <NoMatch />
+            </Route>
+          </Switch>
+        </Router>
+      </QueryClientProvider>
     </ChakraProvider>
   );
-}
+};
 
 export default App;

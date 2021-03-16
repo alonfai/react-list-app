@@ -1,2 +1,5 @@
 src/types/**/*.ts?(x)
+*.d.ts
+src/serviceWorker.ts
+src/reportWebVitals.ts
 *.js

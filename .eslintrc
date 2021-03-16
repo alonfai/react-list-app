@@ -26,7 +26,14 @@
         "version": "require('./package.json').dependencies.react"
     }
   },
-  "rules": {
-    "@typescript-eslint/no-unused-vars": "warn"
-  }
+  "overrides": [
+    {
+      // enable the rule specifically for TypeScript files
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/explicit-module-boundary-types": "off"
+      }
+    }
+  ]
 }
