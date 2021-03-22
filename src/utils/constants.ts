@@ -5,6 +5,8 @@ export const Routes = {
   Others: '*',
 };
 
+export const TradeHistoryLimitRequest = 20;
+
 export const CryptoAssets = {
   BTC: 'Bitcoin',
   ETH: 'Ether',
