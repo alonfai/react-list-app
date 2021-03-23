@@ -1,37 +1,37 @@
 import * as React from 'react';
 
 export default function useIntersectionObserver({
-  root,
-  target,
-  onIntersect,
+  enabled = true,
+  onIntersect = () => {},
   threshold = 1.0,
   rootMargin = '0px',
-  enabled = true,
 }) {
+  const [element, setElement] = React.useState<HTMLElement | null>(null);
+
   React.useEffect(() => {
     if (!enabled) {
+      //Last page list rendered, so no need tp ;recreate a mew event listener on the group last item
       return;
     }
-
     const observer = new IntersectionObserver(
-      entries => entries.forEach(entry => entry.isIntersecting && onIntersect()),
-      {
-        root: root && root.current,
-        rootMargin,
-        threshold,
-      }
+      entries => {
+        const first = entries[0];
+        first.isIntersecting && onIntersect();
+      },
+      { threshold, rootMargin }
     );
 
-    const el = target && target.current;
-
-    if (!el) {
-      return;
+    const currentElement = element;
+    if (currentElement) {
+      observer.observe(currentElement);
     }
 
-    observer.observe(el);
-
-    return () => {
-      observer.unobserve(el);
+    return function cleanup() {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
     };
-  }, [target, enabled, onIntersect, root, rootMargin, threshold]);
+  }, [element, enabled, rootMargin, threshold, onIntersect]);
+
+  return setElement;
 }

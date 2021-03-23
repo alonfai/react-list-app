@@ -29,9 +29,7 @@ export default function useTrades(asset: string, limit: number) {
     ['useTrades', { asset, limit }],
     fetchTrades,
     {
-      getNextPageParam: lastPage => {
-        return lastPage[lastPage.length - 1].timestamp;
-      },
+      getNextPageParam: lastPage => lastPage[lastPage.length - 1].timestamp,
     }
   );
   return result;

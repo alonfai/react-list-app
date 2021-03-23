@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Table, Thead, Tbody, Tr, Th } from '@chakra-ui/react';
 import { useTrades } from 'api';
 import { ErrorMessage, Header, Layout, Loading, TradeItem } from 'components';
-import { constants } from 'utils';
+import { constants, useIntersectionObserver } from 'utils';
 
 export type Props = Record<string, never>;
 
@@ -15,36 +15,10 @@ const Trade: React.FC<Props> = () => {
   const result = useTrades(asset, constants.TradeHistoryLimitRequest);
   const { data, isLoading, error, isError, fetchNextPage, hasNextPage } = result;
 
-  const observer = React.useRef(
-    new IntersectionObserver(
-      entries => {
-        // item is visible in viewPort => we need to render the next available list of traes
-        if (entries[0].isIntersecting) {
-          console.error(result);
-          fetchNextPage();
-        }
-      },
-      /* <Button onClick={() => fetchNextPage()} disabled={!hasNextPage || isFetchingNextPage}>
-        {isFetchingNextPage ? 'Loading more...' : hasNextPage ? 'Load more' : 'Nothing to load'}
-      </Button> */
-      { threshold: 1 }
-    )
-  );
-  const [element, setElement] = React.useState<HTMLElement | null>(null);
-  React.useEffect(() => {
-    const currentElement = element;
-    const currentObserver = observer.current;
-
-    if (currentElement) {
-      currentObserver.observe(currentElement);
-    }
-
-    return () => {
-      if (currentElement) {
-        currentObserver.unobserve(currentElement);
-      }
-    };
-  }, [element]);
+  const element = useIntersectionObserver({
+    onIntersect: fetchNextPage,
+    enabled: hasNextPage,
+  });
 
   // Determine the loading state
   if (isLoading) {
@@ -73,7 +47,7 @@ const Trade: React.FC<Props> = () => {
             </Th>
           </Tr>
         </Thead>
-        <Tbody>
+        <Tbody overflow='auto' height='100px'>
           {data?.pages.map((page, pageIndex) => (
             <React.Fragment key={pageIndex}>
               {page.map((trade, tradeIndex) => {
@@ -82,7 +56,7 @@ const Trade: React.FC<Props> = () => {
                   pageIndex + 1 === data.pages.length &&
                   tradeIndex + 1 === constants.TradeHistoryLimitRequest
                 ) {
-                  return <TradeItem key={trade.tid} trade={trade} ref={setElement} />;
+                  return <TradeItem key={trade.tid} trade={trade} ref={element} />;
                 }
                 return <TradeItem key={trade.tid} trade={trade} />;
               })}
