@@ -11,6 +11,8 @@ const Header: React.FC<Props> = ({ children }) => {
       paddingBottom='16px'
       fontFamily='MarkPro-Heavy'
       textAlign='center'
+      position='sticky'
+      top='0'
       w='100%'
       color='#ffffff'
       fontSize='18px'

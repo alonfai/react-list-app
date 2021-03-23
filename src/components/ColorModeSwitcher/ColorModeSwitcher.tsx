@@ -7,7 +7,7 @@ const ColorModeSwitcher: React.FC<Partial<ButtonProps>> = props => {
   const SwitchIcon = useColorModeValue(FaMoon, FaSun);
 
   // <ColorModeSwitcher justifySelf='flex-end' />
-        
+
   return (
     <IconButton
       size='md'
