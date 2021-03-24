@@ -29,8 +29,10 @@ const Trade: React.FC<Props> = () => {
 
   const result = useTrades(asset, constants.TradeHistoryLimitRequest);
   const { data, isLoading, error, isError, fetchNextPage, hasNextPage } = result;
+  const ref = React.useRef<HTMLTableRowElement>(null);
 
-  const element = useIntersectionObserver({
+  useIntersectionObserver({
+    ref,
     onIntersect: fetchNextPage,
     enabled: hasNextPage,
   });
@@ -65,7 +67,7 @@ const Trade: React.FC<Props> = () => {
                   pageIndex + 1 === data.pages.length &&
                   tradeIndex + 1 === constants.TradeHistoryLimitRequest
                 ) {
-                  return <TradeItem key={trade.tid} trade={trade} ref={element} />;
+                  return <TradeItem key={trade.tid} trade={trade} ref={ref} />;
                 }
                 return <TradeItem key={trade.tid} trade={trade} />;
               })}

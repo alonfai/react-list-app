@@ -1,6 +1,8 @@
 import { useQuery } from 'react-query';
 import { ExchangeRatesResponse } from './types';
 
+export const QUERY_KEY = 'loadExchanges';
+
 async function fetchExchanges(): Promise<ExchangeRatesResponse> {
   const response = await fetch(`${process.env.REACT_APP_API_BASE}/exchange_rates`);
   if (!response.ok) {
@@ -10,5 +12,5 @@ async function fetchExchanges(): Promise<ExchangeRatesResponse> {
 }
 
 export default function useExchanges() {
-  return useQuery<ExchangeRatesResponse, Error>(['loadExchanges'], fetchExchanges);
+  return useQuery<ExchangeRatesResponse, Error>([QUERY_KEY], fetchExchanges);
 }

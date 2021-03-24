@@ -27,7 +27,7 @@ export type TradeResponse = {
   price: string;
   size: string;
   value: string;
-  taker_size: 'buy' | 'sell';
+  taker_side: 'buy' | 'sell';
   timestamp: string;
 };
 

@@ -3,6 +3,8 @@ import { QueryFunctionContext, useInfiniteQuery } from 'react-query';
 import { ResponseError, TradeResponse } from './types';
 import { constants } from 'utils';
 
+export const QUERY_KEY = 'useTrades';
+
 type TradeQueryKey = [
   key: string,
   item: {
@@ -32,7 +34,7 @@ async function fetchTrades(context: QueryFunctionContext<TradeQueryKey, TradePag
 
 export default function useTrades(asset: string, limit: number) {
   const result = useInfiniteQuery<TradeResponse[], ResponseError>(
-    ['useTrades', { asset, limit }],
+    [QUERY_KEY, { asset, limit }],
     fetchTrades,
     {
       getNextPageParam: lastPage => lastPage[lastPage.length - 1].timestamp,

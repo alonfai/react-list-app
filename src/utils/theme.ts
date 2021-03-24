@@ -1,5 +1,8 @@
 import { extendTheme, ThemeOverride } from '@chakra-ui/react';
 
+/**
+ * Pre-defined set of custom themeing object used in the Chakra-UI provider
+ */
 export default extendTheme({
   styles: {
     global: {

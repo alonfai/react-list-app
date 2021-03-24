@@ -29,13 +29,13 @@ export default React.forwardRef<HTMLTableRowElement, Props>(function TradeItem({
       <Td>
         <div>{time}</div>
       </Td>
-      <Td color={trade.taker_size === 'buy' ? 'green' : 'red'} whiteSpace='nowrap'>
+      <Td color={trade.taker_side === 'buy' ? 'green' : 'red'} whiteSpace='nowrap'>
         <Image
           boxSize='20px'
           objectFit='cover'
           display='inline'
-          src={trade.taker_size === 'buy' ? trendUp : trendDown}
-          alt={trade.taker_size === 'buy' ? 'trend-up' : 'trend-down'}
+          src={trade.taker_side === 'buy' ? trendUp : trendDown}
+          alt={trade.taker_side === 'buy' ? 'trend-up' : 'trend-down'}
         />
         <Text pl='8px' as='div' display='inline'>
           {Number(trade.price).toString()}
