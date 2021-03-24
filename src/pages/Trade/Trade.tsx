@@ -5,7 +5,7 @@ import { useTrades } from 'api';
 import { ErrorMessage, Header, Layout, Loading, TradeItem } from 'components';
 import { constants, useIntersectionObserver } from 'utils';
 
-const TableHead: React.FC<TableColumnHeaderProps> = ({ children }) => {
+const TableHead: React.FC<TableColumnHeaderProps> = ({ children, ...rest }) => {
   return (
     <Th
       fontSize='17px'
@@ -14,6 +14,7 @@ const TableHead: React.FC<TableColumnHeaderProps> = ({ children }) => {
       textTransform='none'
       position='sticky'
       top='55px'
+      {...rest}
     >
       {children}
     </Th>
@@ -55,7 +56,7 @@ const Trade: React.FC<Props> = () => {
           <Tr>
             <TableHead>Time</TableHead>
             <TableHead>Price</TableHead>
-            <TableHead isNumeric>Size</TableHead>
+            <TableHead textAlign='right'>Size</TableHead>
           </Tr>
         </Thead>
         <Tbody overflowY='auto' overflowX='hidden' height='100px'>
