@@ -4,7 +4,7 @@ export default function useIntersectionObserver({
   enabled = true,
   onIntersect = () => {},
   threshold = 1.0,
-  rootMargin = '0px',
+  rootMargin = '70px',
 }) {
   const [element, setElement] = React.useState<HTMLElement | null>(null);
 
@@ -15,6 +15,9 @@ export default function useIntersectionObserver({
     }
     const observer = new IntersectionObserver(
       entries => {
+        if (entries.length === 0) {
+          return;
+        }
         const first = entries[0];
         first.isIntersecting && onIntersect();
       },

@@ -4,6 +4,15 @@ export type FairAsset = 'USD' | 'AUD';
 
 export type Currency = FairAsset | CrpytoAsset;
 
+export class ResponseError extends Error {
+  public readonly status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status;
+  }
+}
+
 export type ExchangeRate = {
   base_currency: Currency;
   counter_currency: Currency;

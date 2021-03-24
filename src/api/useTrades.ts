@@ -1,6 +1,7 @@
 import { getUnixTime } from 'date-fns';
 import { QueryFunctionContext, useInfiniteQuery } from 'react-query';
-import { TradeResponse } from './types';
+import { ResponseError, TradeResponse } from './types';
+import { constants } from 'utils';
 
 type TradeQueryKey = [
   key: string,
@@ -19,17 +20,28 @@ async function fetchTrades(context: QueryFunctionContext<TradeQueryKey, TradePag
   }
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error('Network response was not ok');
+    throw new ResponseError(
+      response.status === constants.STATUS_CODES.NOT_FOUND
+        ? 'Unable to find historical trade history'
+        : 'Network response was not ok',
+      response.status
+    );
   }
   return response.json();
 }
 
 export default function useTrades(asset: string, limit: number) {
-  const result = useInfiniteQuery<TradeResponse[], Error>(
+  const result = useInfiniteQuery<TradeResponse[], ResponseError>(
     ['useTrades', { asset, limit }],
     fetchTrades,
     {
       getNextPageParam: lastPage => lastPage[lastPage.length - 1].timestamp,
+      retry: (failureCount, error) => {
+        // if api request for resouce not found, don't attempt to run a retry request. On other scenarios, try to re-run the request till max retries attempts reached
+        return error.status !== constants.STATUS_CODES.NOT_FOUND
+          ? failureCount <= constants.MAX_API_RETRIES
+          : false;
+      },
     }
   );
   return result;

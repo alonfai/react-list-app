@@ -1,9 +1,24 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
-import { Table, Thead, Tbody, Tr, Th } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Th, TableColumnHeaderProps } from '@chakra-ui/react';
 import { useTrades } from 'api';
 import { ErrorMessage, Header, Layout, Loading, TradeItem } from 'components';
 import { constants, useIntersectionObserver } from 'utils';
+
+const TableHead: React.FC<TableColumnHeaderProps> = ({ children }) => {
+  return (
+    <Th
+      fontSize='17px'
+      color='#1058A1'
+      bgColor='#F2F3F8'
+      textTransform='none'
+      position='sticky'
+      top='55px'
+    >
+      {children}
+    </Th>
+  );
+};
 
 export type Props = Record<string, never>;
 
@@ -36,18 +51,12 @@ const Trade: React.FC<Props> = () => {
       <Table variant='simple'>
         <Thead>
           <Tr>
-            <Th fontSize='17px' color='#1058A1' textTransform='none'>
-              Time
-            </Th>
-            <Th fontSize='17px' color='#1058A1' textTransform='none'>
-              Price
-            </Th>
-            <Th fontSize='17px' color='#1058A1' textTransform='none' isNumeric>
-              Size
-            </Th>
+            <TableHead>Time</TableHead>
+            <TableHead>Price</TableHead>
+            <TableHead isNumeric>Size</TableHead>
           </Tr>
         </Thead>
-        <Tbody overflow='auto' height='100px'>
+        <Tbody overflowY='auto' overflowX='hidden' height='100px'>
           {data?.pages.map((page, pageIndex) => (
             <React.Fragment key={pageIndex}>
               {page.map((trade, tradeIndex) => {

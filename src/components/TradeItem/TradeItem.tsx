@@ -29,7 +29,7 @@ export default React.forwardRef<HTMLTableRowElement, Props>(function TradeItem({
       <Td>
         <div>{time}</div>
       </Td>
-      <Td color={trade.taker_size === 'buy' ? 'green' : 'red'}>
+      <Td color={trade.taker_size === 'buy' ? 'green' : 'red'} whiteSpace='nowrap'>
         <Image
           boxSize='20px'
           objectFit='cover'

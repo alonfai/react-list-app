@@ -1,4 +1,4 @@
-import { Alert, AlertIcon, AlertDescription, CloseButton } from '@chakra-ui/react';
+import { Alert, AlertIcon, AlertTitle, AlertDescription, Flex } from '@chakra-ui/react';
 
 export type Props = {
   description: string;
@@ -7,10 +7,11 @@ export type Props = {
 const ErrorMessage: React.FC<Props> = ({ description }) => {
   return (
     <Alert status='error'>
-      {' '}
       <AlertIcon />
-      <AlertDescription>{description}</AlertDescription>
-      <CloseButton position='absolute' right='8px' top='8px' />
+      <Flex flexDir='column'>
+        <AlertTitle>Error Loading: </AlertTitle>
+        <AlertDescription>{description}</AlertDescription>
+      </Flex>
     </Alert>
   );
 };

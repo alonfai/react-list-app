@@ -6,7 +6,13 @@ export type Props = {
 
 const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <Flex direction='column' justifyContent='center' align='center'>
+    <Flex
+      direction='column'
+      justifyContent='center'
+      align='center'
+      paddingLeft='10px'
+      paddingRight='10px'
+    >
       {children}
     </Flex>
   );
