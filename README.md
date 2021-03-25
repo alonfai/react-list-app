@@ -1,6 +1,15 @@
-# Getting Started with Create React App
+# CoinJar Demo App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was based on the [Create React App](https://github.com/facebook/create-react-app) template.\
+
+It consists of building a two screens app used to explore prices of various cryptocurrencies available on the CoinJar platform. It uses React to render all UI, together with the following essentials:
+
+- Typescript 4.x+
+- ESLint + Prettier for coding standard and formatting
+- React-Router for defining different routes of the app
+- [Chakra UI](https://chakra-ui.com/) for rendering accessible components
+- [date-fns](https://date-fns.org/) for date manipulation
+- [React-Query](https://react-query.tanstack.com/) for caching/fetching data from remote CoinJar API
 
 ## Available Scripts
 
@@ -8,16 +17,20 @@ In the project directory, you can run:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
+
+### `yan lint`
+
+Executes ESLint on all files inside the `src` folder
+
+### `yan lint:fix`
+
+Executes ESLint with auto fix problems on all files inside the `src` folder
 
 ### `yarn build`
 
@@ -27,20 +40,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This command will remove the single build dependency from your project.

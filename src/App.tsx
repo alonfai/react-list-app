@@ -1,17 +1,18 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Global } from '@emotion/react';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Home, Trade, NoMatch } from 'pages';
-import { Fonts } from 'components';
-import { constants, theme } from 'utils';
+import { constants } from 'utils';
+import { customTheme, fonts } from 'styles';
 
 const client = new QueryClient();
 
 const App: React.FC = () => {
   return (
-    <ChakraProvider theme={theme}>
-      <Fonts />
+    <ChakraProvider theme={customTheme}>
+      <Global styles={fonts} />
       <QueryClientProvider client={client}>
         <ReactQueryDevtools initialIsOpen={false} />
         <Router>
