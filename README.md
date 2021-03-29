@@ -11,6 +11,20 @@ It consists of building a two screens app used to explore prices of various cryp
 - [date-fns](https://date-fns.org/) for date manipulation
 - [React-Query](https://react-query.tanstack.com/) for caching/fetching data from remote CoinJar API
 
+The project uses environment variables to define the different API endpoints inside `.env`:
+
+- REACT_APP_API_BASE
+- REACT_APP_API_EXCHANGE_DOMAIN
+
+
+## Pre requirements
+
+Have NPM or yarn on your machine and execute the following.
+
+```js
+yarn install
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
