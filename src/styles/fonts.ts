@@ -7,7 +7,7 @@ const fonts = `@font-face {
 }
 @font-face {
   font-family: 'MarkPro-Heavy';
-  src: url'(${process.env.REACT_APP_PUBLIC_URL}/fonts/MarkPro-Heavy.otf') format('otf');
+  src: url('${process.env.REACT_APP_PUBLIC_URL}/fonts/MarkPro-Heavy.otf') format('otf');
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;

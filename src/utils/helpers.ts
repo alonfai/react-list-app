@@ -21,7 +21,7 @@ export function formatExchangeData(data: Types.ExchangeRate) {
     ...data,
     midpoint:
       Number(data.midpoint) > 100 && Number(data.midpoint) < 999.99
-        ? Number(data.midpoint).toFixed(2).toString()
-        : Number(data.midpoint).toString(),
+        ? (Math.round(Number(data.midpoint) * 100) / 100).toFixed(2).toString()
+        : Number(data.midpoint).toFixed(4).toString(),
   };
 }

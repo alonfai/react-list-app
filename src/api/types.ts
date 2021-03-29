@@ -11,11 +11,15 @@ export class ResponseError extends Error {
     super(message);
     this.status = status;
   }
+
+  toString() {
+    return `${this.status}: ${this.message}`;
+  }
 }
 
 export type ExchangeRate = {
-  base_currency: Currency;
-  counter_currency: Currency;
+  base_currency: string;
+  counter_currency: string;
   bid: string;
   midpoint: string;
   ask: string;

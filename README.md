@@ -24,6 +24,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Launches the test runner in the interactive watch mode.
 
+### `yan coverage`
+
+Launches the test runner in the interactive watch mode and an integrated coverage reporter.
+
 ### `yan lint`
 
 Executes ESLint on all files inside the `src` folder

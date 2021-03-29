@@ -1,3 +1,6 @@
+/**
+ * HTTP Routes
+ */
 export const Routes = {
   Root: '/',
   Home: '/home',
@@ -5,6 +8,9 @@ export const Routes = {
   Others: '*',
 };
 
+/**
+ * Different possible API Status codes
+ */
 export const STATUS_CODES = {
   OK: 200,
   BAD_REQUEST: 400,
@@ -22,6 +28,9 @@ export const TradeHistoryLimitRequest = 20;
  */
 export const MAX_API_RETRIES = 3;
 
+/**
+ * Name for the available digital currencies
+ */
 export const CryptoAssets = {
   BTC: 'Bitcoin',
   ETH: 'Ether',

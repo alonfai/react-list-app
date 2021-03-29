@@ -8,6 +8,7 @@
     "@emotion/styled": "^11.1.5",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
+    "@testing-library/react-hooks": "^5.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
@@ -32,6 +33,7 @@
     "react-query": "^3.12.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-test-renderer": "^17.0.2",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -39,10 +41,22 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "coverage": "yarn test --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/**/*.ts ./src/**/*.tsx --quiet",
     "lint:fix": "yarn lint --fix",
     "prepare": "husky install"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "src/styles",
+      "src/utils/constants.ts"
+    ]
   },
   "browserslist": {
     "production": [

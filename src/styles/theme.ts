@@ -14,17 +14,13 @@ export default extendTheme({
         bgColor: '#F2F3F8',
         opacity: 1,
       },
-      fonts: {
-        body: 'SFProText-Medium, SFProText-Regular',
-        heading: 'MarkPro-Heavy, MarkPro-Bold',
-      },
       '#root': {
         height: '100%',
       },
     },
   },
   fonts: {
-    body: 'SFProText-Medium, SFProText-Regular',
-    heading: 'MarkPro-Heavy, MarkPro-Bold',
+    heading: "'MarkPro-Heavy', 'MarkPro-Bold', 'SFProText-Medium', 'SFProText-Regular'",
+    body: "'MarkPro-Heavy', 'MarkPro-Bold', 'SFProText-Medium', 'SFProText-Regular'",
   },
 }) as ThemeOverride;
