@@ -1,6 +1,6 @@
 # CoinJar Demo App
 
-This project was based on the [Create React App](https://github.com/facebook/create-react-app) template.\
+This project was based on the [Create React App](https://github.com/facebook/create-react-app) template.
 
 It consists of building a two screens app used to explore prices of various cryptocurrencies available on the CoinJar platform. It uses React to render all UI, together with the following essentials:
 
