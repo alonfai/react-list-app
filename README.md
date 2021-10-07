@@ -2,14 +2,14 @@
 
 This project was based on the [Create React App](https://github.com/facebook/create-react-app) template.
 
-It consists of building a two screens app used to explore prices of various cryptocurrencies available on the CoinJar platform. It uses React to render all UI, together with the following essentials:
+It consists of building a two screens app used to explore prices of various cryptocurrencies available on the exchange platform. It uses React to render all UI, together with the following essentials:
 
 - Typescript 4.x+
 - ESLint + Prettier for coding standard and formatting
 - React-Router for defining different routes of the app
 - [Chakra UI](https://chakra-ui.com/) for rendering accessible components
 - [date-fns](https://date-fns.org/) for date manipulation
-- [React-Query](https://react-query.tanstack.com/) for caching/fetching data from remote CoinJar API
+- [React-Query](https://react-query.tanstack.com/) for caching/fetching data from remote API
 
 The project uses environment variables to define the different API endpoints inside `.env`:
 
