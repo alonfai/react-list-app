@@ -1,4 +1,4 @@
-# CoinJar Demo App
+# Crypto Demo App
 
 This project was based on the [Create React App](https://github.com/facebook/create-react-app) template.
 
